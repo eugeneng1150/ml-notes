@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "articles": [
+    {
+      "path": "README.md",
+      "title": "Machine Learning Notes",
+      "topics": [
+        "neural-networks",
+        "kernels",
+        "transformers",
+        "emergent-ai-dynamics"
+      ],
+      "depth": "overview",
+      "status": "published",
+      "references_to": [],
+      "referenced_by": [],
+      "series": null,
+      "series_order": null,
+      "prerequisites": [],
+      "external_links": {}
+    }
+  ],
+  "series": {}
+}
