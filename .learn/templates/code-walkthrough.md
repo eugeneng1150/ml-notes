@@ -1,8 +1,12 @@
 # [System Or Library] [Component] Code Walkthrough
 
-## Motivation
+## Introduction
 
-[What implementation question does this walkthrough answer?]
+[Explain what component is being studied and why it matters.]
+
+## Intuition
+
+[Describe the component before reading code.]
 
 ## Scope
 
@@ -10,13 +14,11 @@
 - Version or commit: [commit/tag]
 - Files: [important paths]
 
-## Concept Frame
+## How It Works
 
-[Explain the concept before reading code.]
-
-## Execution Path
-
-[Describe the high-level flow before line-level details.]
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
 
 ```mermaid
 flowchart TD
@@ -28,18 +30,23 @@ flowchart TD
 
 [Walk through the important functions in execution order.]
 
-## Design Decisions
+## Complexity
+
+### Time Complexity
+
+[Main runtime cost.]
+
+### Space Complexity
+
+[Main memory cost.]
+
+## Design Tradeoffs
 
 | Decision | Alternative | Tradeoff |
 | --- | --- | --- |
 | [Decision] | [Alternative] | [Tradeoff] |
 
-## Failure Modes
-
-- [Failure mode 1]
-- [Failure mode 2]
-
-## Takeaways
+## Key Takeaways
 
 - [Takeaway 1]
 - [Takeaway 2]

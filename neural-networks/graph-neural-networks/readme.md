@@ -1,84 +1,124 @@
 # Graph Neural Networks
 
-This folder collects my notes on graph neural networks and graph representation learning. The main question I want to keep returning to is:
+## Introduction
 
-> How do we learn useful representations when the input is not a vector, image, or sequence, but a graph of entities and relationships?
+Graph neural networks are models for learning from graph-structured data, where the input is made of nodes, edges, and relationships rather than a plain vector or sequence. I started this topic from two directions: Weisfeiler-Lehman graph kernels and introductory material on graph neural networks for machine learning engineers. That pairing is useful because graph kernels show a classical way to compare graphs through structured features, while GNNs show how to learn those representations directly with neural networks.
 
-I started this topic from two directions: Weisfeiler-Lehman graph kernels and introductory GNN material for machine learning engineers. That makes a useful learning path because graph kernels show one classical way to compare graphs through structured features, while GNNs show how neural networks can learn graph representations through message passing.
+## Intuition
 
-## Mental Model
+The central idea is simple: each node updates its representation by looking at its neighbors. If a node is connected to other nodes that carry useful information, then the node should be able to absorb that information over multiple message-passing steps.
 
-A graph is made of nodes, edges, and optional features on either of them. A GNN updates each node representation by repeatedly mixing information from its neighbors.
-gi
-At a high level:
+The intuition is easiest to see in a small graph:
 
-1. Each node starts with an initial feature vector.
-2. Each layer gathers messages from neighboring nodes.
-3. The model aggregates those messages.
-4. The node updates its representation.
-5. A decoder turns node, edge, or graph representations into predictions.
+1. Every node starts with an initial feature vector.
+2. Each layer collects messages from neighboring nodes.
+3. The messages are aggregated into a single summary.
+4. The node updates its own embedding using that summary.
+5. A readout step turns node embeddings into node-level, edge-level, or graph-level predictions.
 
-This means the graph structure is not just metadata. It determines which information can move, how far it can move, and what the model is able to distinguish.
+This is close to the Weisfeiler-Lehman view of graphs. WL relabeling updates a node using its current label and the multiset of neighbor labels. GNNs do the same kind of local neighborhood aggregation, but with learned continuous transformations instead of fixed discrete labels.
 
-## Why Weisfeiler-Lehman Matters
+## How It Works
 
-The Weisfeiler-Lehman idea gives a clean bridge from graph kernels to GNNs.
+Most message-passing GNNs follow the same pattern:
 
-In the WL relabeling procedure, each node updates its label using its current label and the multiset of labels from its neighbors. After several iterations, the graph has labels that encode increasingly larger local neighborhoods. WL graph kernels use these labels to compare graphs by counting matching patterns.
+1. Initialize node features.
+2. Build messages from neighboring nodes and edges.
+3. Aggregate the messages with a permutation-invariant operator such as sum, mean, or max.
+4. Update node embeddings with a neural network.
+5. Repeat for several layers.
 
-That sounds very close to message passing:
+For a graph with node features `h_v^(l)` at layer `l`, a common form is:
 
-| Classical WL / graph kernels | Graph neural networks |
-| --- | --- |
-| Discrete node labels | Continuous node embeddings |
-| Neighbor label multiset | Neighbor message aggregation |
-| Relabeling step | Neural update function |
-| Count matching graph patterns | Learn task-specific representations |
-| Fixed feature extraction | End-to-end learned features |
+$$
+m_v^{(l+1)} = \operatorname{AGGREGATE}\left(\left\{ M\left(h_v^{(l)}, h_u^{(l)}, e_{vu}\right) : u \in \mathcal{N}(v) \right\}\right)
+$$
 
-The important connection is that both approaches build node information from local neighborhoods. The difference is that graph kernels usually define the features by hand, while GNNs learn how to transform and combine features for a task.
+$$
+h_v^{(l+1)} = \operatorname{UPDATE}\left(h_v^{(l)}, m_v^{(l+1)}\right)
+$$
 
-## Core Concepts To Learn
+Where:
 
-- Graph representation: nodes, edges, adjacency, edge index, node features, edge features
-- Prediction tasks: node classification, graph classification, link prediction, edge prediction
-- Message passing: message function, aggregation function, update function
-- Readout functions: turning node embeddings into graph-level predictions
-- Expressivity: what graph structures a GNN can or cannot distinguish
-- Homophily and heterophily: whether connected nodes tend to share labels or differ
-- Oversmoothing: deep layers can make node embeddings too similar
-- Oversquashing: long-range information can be compressed through narrow graph bottlenecks
-- Inductive vs transductive learning: generalizing to new graphs or only known nodes
+- `N(v)` is the neighborhood of node `v`
+- `M` is a message function
+- `AGGREGATE` is permutation invariant
+- `UPDATE` is usually an MLP, GRU-style update, or residual transformation
 
-## Learning Path
+Graph-level prediction adds a readout step after the final layer:
 
-1. Review graph basics: node features, edge features, adjacency matrices, edge lists, neighborhoods, and graph-level labels.
-2. Understand WL graph kernels as a classical similarity-based approach to graph learning.
-3. Map WL relabeling to the message-passing view of GNNs.
-4. Study a basic graph convolutional network and track how node embeddings change after one layer.
-5. Study GraphSAGE to understand inductive learning and neighborhood sampling.
-6. Study graph attention networks to understand learned neighbor weighting.
-7. Compare node classification, graph classification, and link prediction decoders.
-8. Investigate common failure modes: low homophily, label scarcity, oversmoothing, and oversquashing.
-9. Implement small examples with a toy graph before moving to benchmark datasets.
+$$
+h_G = \operatorname{READOUT}\left(\left\{ h_v^{(L)} : v \in V \right\}\right)
+$$
 
-## Planned Notes
+This is the core mechanism behind graph convolutional networks, GraphSAGE, graph attention networks, and many related variants.
 
-- `weisfeiler-lehman-graph-kernels.md`
-- `message-passing.md`
-- `graph-convolutional-networks.md`
-- `graphsage.md`
-- `graph-attention-networks.md`
-- `oversmoothing-and-oversquashing.md`
-- `node-vs-graph-vs-link-prediction.md`
+## Mathematical Formulation
 
-## Open Questions
+A graph can be written as `G = (V, E)` with optional node features `X` and edge features `E_feat`.
 
-- How exactly does WL expressivity limit what message-passing GNNs can distinguish?
-- When is a graph kernel still preferable to a GNN?
-- How much depth is useful before oversmoothing or oversquashing becomes harmful?
-- What changes when the graph is heterophilic instead of homophilic?
-- How should graph structure be combined with rich node text or image features?
+One common message-passing layer can be written as:
+
+$$
+h_v^{(l+1)} = U^{(l)}\left(h_v^{(l)}, \operatorname{AGGREGATE}\left(\left\{ M^{(l)}\left(h_v^{(l)}, h_u^{(l)}, e_{vu}\right) : u \in \mathcal{N}(v) \right\}\right)\right)
+$$
+
+In a graph convolutional network, a simplified version often looks like:
+
+$$
+H^{(l+1)} = \sigma\left(D^{-1/2} A D^{-1/2} H^{(l)} W^{(l)}\right)
+$$
+
+Where:
+
+- `A` is the adjacency matrix with self-loops
+- `D` is the degree matrix
+- `H^(l)` is the matrix of node embeddings at layer `l`
+- `W^(l)` is a learnable weight matrix
+- `sigma` is a nonlinearity
+
+This formal view makes the main design choices explicit: what information is exchanged, how it is aggregated, and how much structure the model can preserve.
+
+## Complexity
+
+### Time Complexity
+
+For sparse graphs, one message-passing layer is usually linear in the number of edges plus the number of nodes, or roughly `O(|E| + |V|)`, up to the cost of the per-edge and per-node neural transformations.
+
+### Space Complexity
+
+The main memory cost is storing node embeddings, edge information, and the graph connectivity structure. For minibatched or sampled training, the actual memory use also depends on neighborhood sampling and batch size.
+
+## Why It Matters
+
+GNNs are useful because many real problems are naturally graph-shaped. Molecules, social networks, recommendation systems, knowledge graphs, traffic systems, and relational databases all have structure that a standard MLP does not see directly.
+
+The graph view also explains common failure modes. If the graph is too deep, node embeddings can become too similar. If information has to flow through narrow bottlenecks, long-range signals can get compressed. If the graph is heterophilic, naive neighborhood aggregation can become misleading.
+
+## Comparison
+
+| Aspect | Graph kernels | Graph neural networks |
+| --- | --- | --- |
+| Representation | Hand-designed structural features | Learned node and graph embeddings |
+| Update rule | Fixed feature extraction | Learned message passing |
+| Training style | Often separate feature generation + classifier | End-to-end optimization |
+| Strength | Good interpretability and strong classical baselines | Flexible feature learning and task adaptation |
+| Limitation | Less adaptive to data-rich tasks | Can oversmooth or oversquash on deep graphs |
+
+## Applications
+
+1. Molecule property prediction and drug discovery
+2. Recommendation systems and user-item graphs
+3. Knowledge graphs and relational reasoning
+4. Social network analysis and community structure
+5. Traffic, routing, and infrastructure modeling
+
+## Key Takeaways
+
+- GNNs learn from graph structure by repeatedly aggregating information from neighboring nodes.
+- Weisfeiler-Lehman graph kernels are a useful mental bridge because they also build representations from local neighborhoods.
+- The main design choices are the message function, aggregation rule, update function, and readout function.
+- The main practical issues are expressivity, graph depth, homophily, oversmoothing, and oversquashing.
 
 ## References
 

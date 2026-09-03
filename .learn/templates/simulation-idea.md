@@ -1,51 +1,47 @@
 # [Simulation Idea]
 
-## Motivation
+## Introduction
 
-[What behavior, system, or question should this simulation explore?]
+[Explain the simulated system and why it is interesting.]
 
-## Driving Question
+## Intuition
 
-[What would count as learning something from the simulation?]
+[Describe the behavior or dynamic I expect to observe.]
 
-## Agents
-
-[Who or what acts in the environment?]
-
-## Environment
-
-[What state exists outside the agents?]
-
-## State, Actions, And Observations
+## Agents And Environment
 
 | Component | Description |
 | --- | --- |
-| State | [State variables] |
-| Actions | [Action space] |
+| Agents | [Who or what acts] |
+| Environment | [What state exists outside the agents] |
 | Observations | [What agents can observe] |
-| Rewards or objectives | [Optimization signal, if any] |
+| Actions | [What agents can do] |
+| Objectives | [What agents optimize or follow] |
 
-## Update Rules
+## How It Works
 
-[How does the simulation advance by one step?]
+1. [Initialization]
+2. [Agent decision step]
+3. [Environment update step]
+4. [Measurement step]
 
 ## Metrics
 
 - [Metric 1]
 - [Metric 2]
+- [Metric 3]
 
 ## Baselines
 
 - [Simple baseline]
 - [Alternative rule or policy]
 
-## Failure Modes
+## Expected Dynamics
 
-- [Ways the simulation can become misleading or trivial]
+[Describe the interactions, feedback loops, or emergent behavior to look for.]
 
-## Experiment Plan
+## Key Takeaways
 
-1. [Experiment 1]
-2. [Experiment 2]
-3. [Experiment 3]
+- [Takeaway 1]
+- [Takeaway 2]
 

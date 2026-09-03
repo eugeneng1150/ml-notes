@@ -49,10 +49,10 @@ Input: a topic, question, paper, project idea, or draft path.
 Workflow:
 
 1. Locate related repo material through the knowledge graph and filesystem.
-2. Identify the driving question.
+2. Identify the learning context and what the user is trying to understand.
 3. Determine the right depth level: `build-and-modify`, `understand-and-reproduce`, or `intuition`.
-4. Plan in the order concept frame -> model or method -> implementation or experiment.
-5. Include prerequisites, recommended resources, concrete outputs, and open questions.
+4. Plan in the order introduction -> intuition -> mechanism -> formal details -> applications or implementation.
+5. Include prerequisites, recommended resources, concrete outputs, and follow-up topics.
 6. Save the plan as `learn-plan.md` under the most relevant topic folder unless the user asks for inline output only.
 
 Output shape:
@@ -60,14 +60,14 @@ Output shape:
 ```markdown
 # [Topic] Learning Plan
 
-## Driving Question
-## Why This Matters
+## Introduction
+## Learning Context
 ## Existing Repo Connections
 ## Prerequisites
 ## Roadmap
 ## Expected Notes Or Experiments
 ## References To Read
-## Open Questions
+## Follow-Up Topics
 ```
 
 ## /learn-write
@@ -80,15 +80,15 @@ Workflow:
 2. Select the closest template from `.learn/templates/`.
 3. Gather source material before writing factual sections.
 4. Build the note around a clear driving question.
-5. Explain concepts before equations, implementation, or paper details.
+5. Explain concepts with an introduction, intuition, step-by-step mechanism, formal detail, comparison or applications, and key takeaways.
 6. Use concrete examples and shape/data-structure details where useful.
 7. Save the note, notebook, or experiment in the relevant topic folder, using `readme.md` for a topic overview or a descriptive file name for a narrower file.
 
 Quality pass before finishing:
 
-- Check that the section order follows motivation -> concepts -> derivation -> example -> implementation/paper -> takeaways.
+- Check that the section order follows introduction -> intuition -> how it works -> formal detail -> comparison/applications -> key takeaways.
 - Check that claims with external facts have references.
-- Check that open questions are preserved.
+- Use `Follow-Up Topics` instead of an open-ended research-question section unless the user specifically asks for unanswered questions.
 
 ## /learn-review
 
@@ -104,7 +104,7 @@ Workflow:
 
 Review dimensions:
 
-- Driving question: present or missing.
+- Introduction: clear or vague.
 - Concept order: concepts before dense math or implementation.
 - Derivation: sections follow from prior conclusions.
 - Examples: concrete enough to be remembered.

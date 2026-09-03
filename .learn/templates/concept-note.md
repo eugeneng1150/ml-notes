@@ -1,39 +1,56 @@
 # [Topic]
 
-## Motivation
+## Introduction
 
-[What question, confusion, or project need makes this topic worth studying?]
+[Explain the idea in plain language. Start with what problem it solves and why it matters.]
 
-## Driving Question
+## Intuition
 
-[The main question this note should answer.]
+[Use an analogy, small example, or visual mental model before formal details.]
 
-## Concept Frame
+## How It Works
 
-[Define the core objects and relationships.]
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
 
-## Derivation Path
+## Mathematical Formulation
 
-[Explain how the next ideas follow from the starting definitions.]
+[Add equations only after the intuition is clear. Define every symbol.]
 
-## Concrete Example
+## Complexity
 
-[Use a small numeric example, toy graph, toy sequence, or simple dataset.]
+### Time Complexity
 
-## Implementation Notes
+[Describe the main computation cost.]
 
-[Mention data structures, shapes, algorithms, libraries, and edge cases.]
+### Space Complexity
 
-## Takeaways
+[Describe the main memory cost.]
+
+## Why It Matters
+
+[Explain what this concept enables and where it appears in real models or systems.]
+
+## Comparison
+
+| Aspect | [This concept] | [Related concept] |
+| --- | --- | --- |
+| Definition | [Definition] | [Definition] |
+| Use case | [Use case] | [Use case] |
+| Main tradeoff | [Tradeoff] | [Tradeoff] |
+
+## Applications
+
+1. [Application 1]
+2. [Application 2]
+3. [Application 3]
+
+## Key Takeaways
 
 - [Takeaway 1]
 - [Takeaway 2]
 - [Takeaway 3]
-
-## Open Questions
-
-- [Question 1]
-- [Question 2]
 
 ## References
 

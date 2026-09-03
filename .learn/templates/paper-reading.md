@@ -1,49 +1,50 @@
 # [Paper Title]
 
-## Citation
+## Introduction
 
-[Authors, year, venue, link.]
-
-## Why I Am Reading This
-
-[Connect the paper to a current learning goal or note.]
+[Explain what the paper is about and why it is worth reading.]
 
 ## Problem
 
-[What problem does the paper solve?]
+[Describe the problem the paper addresses.]
 
 ## Core Idea
 
-[What is the central contribution?]
+[Explain the main contribution in plain language before details.]
 
-## Method
+## How It Works
 
-[Explain the method in a concept-first way.]
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
 
-## Key Equations Or Algorithms
+## Mathematical Formulation Or Algorithm
 
-[Write only the equations or algorithms needed for understanding.]
+[Include only the equations or pseudocode needed to understand the method.]
 
 ## Results
 
-[Summarize the most important evidence.]
+[Summarize the most important empirical or theoretical results.]
 
-## Strengths
+## Why It Matters
 
-- [Strength 1]
-- [Strength 2]
+[Explain how the paper changes the way I understand the topic.]
 
-## Limitations
+## Comparison
 
-- [Limitation 1]
-- [Limitation 2]
+| Aspect | This paper | Related work |
+| --- | --- | --- |
+| Main idea | [Idea] | [Related idea] |
+| Strength | [Strength] | [Strength] |
+| Limitation | [Limitation] | [Limitation] |
 
-## Connection To My Notes
-
-[Link this paper to existing repo topics.]
-
-## Takeaways
+## Key Takeaways
 
 - [Takeaway 1]
 - [Takeaway 2]
+- [Takeaway 3]
+
+## References
+
+- [Citation and link]
 

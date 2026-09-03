@@ -4,12 +4,12 @@
 
 Use this sequence for substantial notes:
 
-1. Motivation: explain the concrete question or confusion that makes the topic worth studying.
-2. Concept frame: define the minimum mental model needed before details.
-3. Derivation path: show how the next concept follows from the previous one.
-4. Example: use a toy example, numeric example, diagram, or code sketch.
-5. Implementation or paper connection: connect the idea to real code, a paper, or an experiment.
-6. Takeaways and open questions: record what is known, what is still unclear, and what to revisit.
+1. Introduction: explain the idea in plain language and why it matters.
+2. Intuition: use an analogy, small example, or visual mental model.
+3. How it works: walk through the mechanism step by step.
+4. Mathematical formulation or implementation detail: add formalism only after the intuition is clear.
+5. Complexity, comparison, or applications: choose the sections that fit the topic.
+6. Key takeaways: end with the points worth remembering.
 
 ## Writing Rules
 
@@ -21,6 +21,7 @@ Use this sequence for substantial notes:
 - Use tables for comparisons and mermaid for diagrams.
 - Avoid ASCII art diagrams.
 - Keep personal motivation natural and brief.
+- Prefer `Follow-Up Topics` when a note needs to point to future reading.
 
 ## Depth Calibration
 
@@ -55,4 +56,4 @@ State the agents, environment, state variables, action space, observation space,
 - Does each major section follow from the previous one?
 - Are examples concrete enough?
 - Are references and claims traceable?
-- Are open questions explicit?
+- Are the key takeaways specific enough to be useful later?

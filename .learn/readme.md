@@ -11,7 +11,7 @@ The notes should follow four principles:
 1. Motivation first: start from a concrete confusion, project idea, paper, or implementation question.
 2. Concepts before mechanics: build the mental model before code or equations become dense.
 3. Derivation over listing: each section should follow naturally from the previous section.
-4. Notes should become reusable: every article should leave behind concepts, examples, references, and open questions that are easy to revisit.
+4. Notes should become reusable: every article should leave behind concepts, examples, references, and takeaways that are easy to revisit.
 
 ## Agent Skills
 
