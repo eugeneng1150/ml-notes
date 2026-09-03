@@ -31,25 +31,11 @@ Most message-passing GNNs follow the same pattern:
 For a graph with node features `h_v^(l)` at layer `l`, a common form is:
 
 $$
-m_v^{(l+1)}
-=
-\mathrm{AGGREGATE}
-\left(
-\left\{
-M\left(h_v^{(l)}, h_u^{(l)}, e_{vu}\right)
-:
-u \in \mathcal{N}(v)
-\right\}
-\right)
+m_v^{(l+1)} = \operatorname{AGGREGATE}\left(\left\{ M\left(h_v^{(l)}, h_u^{(l)}, e_{vu}\right) : u \in \mathcal{N}(v) \right\}\right)
 $$
 
 $$
-h_v^{(l+1)}
-=
-\mathrm{UPDATE}
-\left(
-h_v^{(l)}, m_v^{(l+1)}
-\right)
+h_v^{(l+1)} = \operatorname{UPDATE}\left(h_v^{(l)}, m_v^{(l+1)}\right)
 $$
 
 Where:
@@ -62,16 +48,7 @@ Where:
 Graph-level prediction adds a readout step after the final layer:
 
 $$
-h_G
-=
-\mathrm{READOUT}
-\left(
-\left\{
-h_v^{(L)}
-:
-v \in V
-\right\}
-\right)
+h_G = \operatorname{READOUT}\left(\left\{ h_v^{(L)} : v \in V \right\}\right)
 $$
 
 This is the core mechanism behind graph convolutional networks, GraphSAGE, graph attention networks, and many related variants.
@@ -83,40 +60,13 @@ A graph can be written as `G = (V, E)` with optional node features `X` and edge 
 One common message-passing layer can be written as:
 
 $$
-h_v^{(l+1)}
-=
-U^{(l)}
-\left(
-h_v^{(l)},
-\mathrm{AGGREGATE}
-\left(
-\left\{
-M^{(l)}
-\left(
-h_v^{(l)},
-h_u^{(l)},
-e_{vu}
-\right)
-:
-u \in \mathcal{N}(v)
-\right\}
-\right)
-\right)
+h_v^{(l+1)} = U^{(l)}\left(h_v^{(l)}, \operatorname{AGGREGATE}\left(\left\{ M^{(l)}\left(h_v^{(l)}, h_u^{(l)}, e_{vu}\right) : u \in \mathcal{N}(v) \right\}\right)\right)
 $$
 
 In a graph convolutional network, a simplified version often looks like:
 
 $$
-H^{(l+1)}
-=
-\sigma
-\left(
-D^{-1/2}
-A
-D^{-1/2}
-H^{(l)}
-W^{(l)}
-\right)
+H^{(l+1)} = \sigma\left(D^{-1/2} A D^{-1/2} H^{(l)} W^{(l)}\right)
 $$
 
 Where:
@@ -133,13 +83,7 @@ This formal view makes the main design choices explicit: what information is exc
 
 ### Time Complexity
 
-For sparse graphs, one message-passing layer is usually linear in the number of edges plus the number of nodes, or roughly
-
-$$
-O\left(|E| + |V|\right)
-$$
-
-up to the cost of the per-edge and per-node neural transformations.
+For sparse graphs, one message-passing layer is usually linear in the number of edges plus the number of nodes, or roughly `O(|E| + |V|)`, up to the cost of the per-edge and per-node neural transformations.
 
 ### Space Complexity
 
