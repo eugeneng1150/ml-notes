@@ -46,7 +46,7 @@ Codex may also use this skill implicitly for requests like:
 ## Topic Guidance Locations
 
 - Neural networks: `neural-networks/readme.md`
-- Graph neural networks: `neural-networks/graph-neural-networks/readme.md`
+- Graph neural networks: `neural-networks/graph-neural-networks/`
 - Kernels: `kernels/readme.md`
 - Transformers: `transformers/readme.md`
 - Emergent AI dynamics: `emergent-ai-dynamics/readme.md`

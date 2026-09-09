@@ -48,7 +48,7 @@ The local agent supports four workflows:
 
 Topic-specific study guidance lives in the root topic folders:
 
-- `graph-neural-networks/readme.md`
+- `graph-neural-networks/`
 - `kernels/readme.md`
 - `transformers/readme.md`
 - `emergent-ai-dynamics/readme.md`

@@ -4,10 +4,9 @@ Notes about neural network architectures, representation learning, training beha
 
 ## Subtopics
 
-- [Graph Neural Networks](graph-neural-networks/readme.md)
+- [Graph Neural Networks](graph-neural-networks/)
 - [Multilayer Perceptrons](multilayer-perceptrons/readme.md)
 - [Convolutional Neural Networks](convolutional-neural-networks/readme.md)
 - [Recurrent Neural Networks](recurrent-neural-networks/readme.md)
 - [Autoencoders](autoencoders/readme.md)
 - [Neural ODEs](neural-odes/readme.md)
-

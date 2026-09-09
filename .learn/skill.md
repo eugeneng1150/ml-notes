@@ -37,7 +37,7 @@ The user does not need to type the exact command. Infer the closest behavior fro
 ## Topic Routing
 
 - For neural networks, read `neural-networks/readme.md`.
-- For graph neural networks, read `neural-networks/graph-neural-networks/readme.md`.
+- For graph neural networks, inspect `neural-networks/graph-neural-networks/`.
 - For kernels, read `kernels/readme.md`.
 - For transformers, read `transformers/readme.md`.
 - For emergent AI dynamics, read `emergent-ai-dynamics/readme.md`.
