@@ -29,23 +29,21 @@ Due to models having long chain of thoughts (CoT), the generation of thousands o
 3. Dense Architectures (Grouped-Query Attention, GQA)
 
 - In standard **Multi-Head Attention (MHA)**, each query head has its own corresponding key and value head:
-
-  $$
+```math
   Q_1 \rightarrow (K_1, V_1), \quad
   Q_2 \rightarrow (K_2, V_2), \quad
   Q_3 \rightarrow (K_3, V_3), \quad
   Q_4 \rightarrow (K_4, V_4)
-  $$
-
+``` 
 - **GQA reduces KV-cache memory** by allowing multiple query heads to **share a smaller number of key/value heads**. For example:
 
-  $$
+```math
   Q_1, Q_2 \rightarrow (K_1, V_1)
-  $$
+```
 
-  $$
+```math
   Q_3, Q_4 \rightarrow (K_2, V_2)
-  $$
+```
 
   Hence, **4 query heads only require 2 KV heads instead of 4**.
 
@@ -60,9 +58,9 @@ Due to models having long chain of thoughts (CoT), the generation of thousands o
 
 - In **Multi-Head Attention (MHA)**, each attention head has its own K and V representations:
 
-  $$
+```math
   [K_1,V_1,K_2,V_2,K_3,V_3,K_4,V_4]
-  $$
+```
 
   Therefore, the **KV-cache size grows with the number of attention heads**.
 
@@ -70,15 +68,15 @@ Due to models having long chain of thoughts (CoT), the generation of thousands o
 
   You can think of it as compressing:
 
-  $$
+```math
   \underbrace{[K_1,V_1,K_2,V_2,K_3,V_3,K_4,V_4]}_{\text{large}}
-  $$
+```
 
   into:
 
-  $$
+```math
   \underbrace{c^{KV}}_{\text{small compressed representation}}
-  $$
+```
 
 - Therefore, the **KV-cache size does not scale directly with the number of attention heads**, significantly reducing the memory required per token.
 
