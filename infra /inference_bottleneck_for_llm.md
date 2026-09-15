@@ -24,7 +24,6 @@ Due to models having long chain of thoughts (CoT), the generation of thousands o
 3) Architectural Divergence: Different models have different architecture, hence infernece needs to be tailored to it.
 
 ## Core Idea and background
-TODO: Build the background needed to understand the paper.
 1. Prefill phase: model process the user prompt in parallel and is strictly **compute bound** 
 2. Decoding phase: **Bandwidth bound** each token generatd requires reading the entire model weight and active KV cache from the HBM. 
 3. Dense Architectures (Grouped-Query Attention, GQA)
